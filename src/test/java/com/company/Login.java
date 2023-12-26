@@ -41,8 +41,8 @@ public class Login {
 		Assert.assertEquals("OrangeHRM", pageTitle);    //verify the title of the webpage
 	
 		driver.get("https://www.facebook.com/");
-		driver.findElement(By.id("email")).sendKeys("anuj_sharma401@yahoo.com");
-		driver.findElement(By.id("pass")).sendKeys("");
+		driver.findElement(By.id("email")).sendKeys("anishaprabhu019@gmail.com");
+		driver.findElement(By.id("pass")).sendKeys("admin");
 		driver.findElement(By.xpath("//*[@name='login']")).click();
 		System.out.println("Login");
 		System.out.println("Successfully logged in");
