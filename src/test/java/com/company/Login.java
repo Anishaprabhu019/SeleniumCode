@@ -35,10 +35,10 @@ public class Login {
 
 	@Test
 	public void loginTest(){   
-		driver.get("https://opensource-demo.orangehrmlive.com/"); //define the url
+		driver.get("https://www.facebook.com/"); //define the url
 		String pageTitle = driver.getTitle();       //get the title of the webpage
 		System.out.println("The title of this page is ===> " +pageTitle);
-		Assert.assertEquals("OrangeHRM", pageTitle);    //verify the title of the webpage
+		Assert.assertEquals("Facebook", pageTitle);    //verify the title of the webpage
 	
 		driver.get("https://www.facebook.com/");
 		driver.findElement(By.id("email")).sendKeys("anuj_sharma401@yahoo.com");
