@@ -27,8 +27,10 @@ public class login {
     public void loginTest(){
 
         // Navigate to Facebook login page
-        driver.get("https://www.facebook.com");
-
+              driver.get("https://www.facebook.com");
+               String pageTitle = driver.getTitle();       //get the title of the webpage
+		System.out.println("The title of this page is ===> " +pageTitle);
+		Assert.assertEquals("Facebook", pageTitle); 
         // Locate the username and password fields and the login button
                 driver.findElement(By.id("email")).sendKeys("anishaprabhu019.com");
 		driver.findElement(By.id("pass")).sendKeys("123456789");
@@ -40,15 +42,11 @@ public class login {
 
         // Click on the login button
         loginButton.click();
-
+    }
+    public void teardown(){
         // Wait for a few seconds to see the result before closing the browser
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        driver.quit();
         }
 
-        // Close the browser
-        driver.quit();
-    }
+        
 }
