@@ -7,7 +7,7 @@ public class FacebookLoginAutomation {
 
     public static void main(String[] args) {
         // Set the path to the ChromeDriver executable
-        System.setProperty("webdriver.chrome.driver", "/path/to/chromedriver");
+        System.setProperty("webdriver.chrome.driver", "/opt/chromedriver");
 
         // Initialize the ChromeDriver
         WebDriver driver = new ChromeDriver();
