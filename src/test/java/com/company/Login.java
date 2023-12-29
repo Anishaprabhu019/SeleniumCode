@@ -12,7 +12,7 @@ public class login {
         System.setProperty("webdriver.chrome.driver", "/opt/chromedriver");
 
         // Initialize the ChromeDriver
-        Chromedriver options = new ChromeDriver();
+        Chromedriver options = new ChromeOptions();
         options.addArguments("--no-sandbox"); // Bypass OS security model, MUST BE THE VERY FIRST OPTION
         options.addArguments("--headless");
         options.setExperimentalOption("useAutomationExtension", false);
@@ -34,6 +34,7 @@ public class login {
 		driver.findElement(By.id("pass")).sendKeys("123456789");
 		driver.findElement(By.xpath("//*[@name='login']")).click();
 		System.out.println("Login");
+	        System.out.println("successfull");
         
     
 
