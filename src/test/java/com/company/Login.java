@@ -1,5 +1,3 @@
-package com.company;
-
 import org.junit.Assert;
 import java.io.File;
 import org.apache.commons.io.FileUtils;
@@ -14,7 +12,8 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class Login {
+
+public class Facebooklogin {
 
     WebDriver driver;
     @BeforeTest
@@ -30,26 +29,32 @@ public class Login {
         options.addArguments("--disable-gpu"); // applicable to windows os only
         options.addArguments("--disable-dev-shm-usage"); // overcome limited resource problems
         driver = new ChromeDriver(options); //initialise the WebDriver
-
     }
+	public static void main(String[] args) throws InterruptedException {
+	    // TODO Auto-generated method stub
 
-	@Test
-	public void loginTest(){   
-		driver.get("https://opensource-demo.orangehrmlive.com/"); //define the url
-		String pageTitle = driver.getTitle();       //get the title of the webpage
-		System.out.println("The title of this page is ===> " +pageTitle);
-		Assert.assertEquals("Facebook", pageTitle);    //verify the title of the webpage
-	
-		driver.get("https://www.facebook.com/");
-		driver.findElement(By.id("email")).sendKeys("anuj_sharma401@yahoo.com");
-		driver.findElement(By.id("pass")).sendKeys("");
-		driver.findElement(By.xpath("//*[@name='login']")).click();
-		System.out.println("Login");
-		System.out.println("Successfully logged in");
+	    driver.manage().window().maximize();
+	    driver.get("https://www.facebook.com/");
+	    Thread.sleep(2000);
+	    WebElement username = driver.findElement(By.id("email"));
+	    WebElement password = driver.findElement(By.id("pass"));
+	    WebElement Login = driver.findElement(By.id("u_0_v"));
+	    username.sendKeys("rajattiwari92@gmail.com");
+	    password.sendKeys("tiwari@2");
+	    Login.click();
+	    Thread.sleep(3000);
+	    //driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+	    WebElement navigationclick = driver.findElement(By.id("logoutMenu"));
+	    WebElement logout = driver.findElement(By.xpath("//div[@id='u_d_1']/div/div/div/div/div/ul/li[12]/a/span/span"));
+	    navigationclick.click();
+	    if(logout.isEnabled() && logout.isDisplayed()) {
+	        logout.click();
+	    }
+	    else {
+	        System.out.println("Element not found");
+	    }
+
 	}
-	
-	@AfterTest
-	public void teardown(){
-		driver.quit();
+
 	}
-}
+
