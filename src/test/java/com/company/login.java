@@ -47,7 +47,7 @@ public class login {
                 driver.findElement(By.id("email")).sendKeys("anishaprabhu019.com");
 		driver.findElement(By.id("pass")).sendKeys("123456789");
 		driver.findElement(By.xpath("//*[@name='login']")).click();
-		System.out.println("Login");
+		System.out.println("login");
 	        System.out.println("successfull");
         
     
