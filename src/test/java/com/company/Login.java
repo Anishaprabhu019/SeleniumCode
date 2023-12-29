@@ -13,56 +13,47 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import SeleniumCode.api.java.After;
-import SeleniumCode.api.java.Before;
-import SeleniumCode.api.java.en.Given;
-import SeleniumCode.api.java.en.Then;
-import SeleniumCode.api.java.en.When;
-
 
 public class Login {
-	private Logger LOG=LoggerFactory.getLogger(this.getClass());
-	private WebDriver driver ;
-	
-	@Before
-	public void setUp(){
-		System.setProperty("webdriver.chrome.driver", "src/test/resources/lib/chromedriver.exe");
-		driver=new ChromeDriver();
-		driver.get("http://github.com/venkat-mandla/camel");
-	}
 
-	@Given("^User entered valid userName or phoneNumber as \"([^\"]*)\" and password as \"([^\"]*)\"$")
-	public void user_entered_valid_userName_or_phoneNumber_as_and_password_as(String userName, String password) throws Throwable {
-		driver.get("https://www.facebook.com/");
-		driver.findElement(By.id("email")).sendKeys(userName);
-		driver.findElement(By.id("pass")).sendKeys(password);
-		
-		System.out.println("UserName: " + userName);
-	}
+    WebDriver driver;
+    @BeforeTest
+    public void setup(){
+		System.setProperty("webdriver.chrome.driver","/opt/chromedriver");
+		ChromeOptions options = new ChromeOptions();
+		options.addArguments("--no-sandbox"); // Bypass OS security model, MUST BE THE VERY FIRST OPTION
+        options.addArguments("--headless");
+        options.setExperimentalOption("useAutomationExtension", false);
+        options.addArguments("start-maximized"); // open Browser in maximized mode
+        options.addArguments("disable-infobars"); // disabling infobars
+        options.addArguments("--disable-extensions"); // disabling extensions
+        options.addArguments("--disable-gpu"); // applicable to windows os only
+        options.addArguments("--disable-dev-shm-usage"); // overcome limited resource problems
+        driver = new ChromeDriver(options); //initialise the WebDriver
 
-	@When("^click on loginbutton \"([^\"]*)\" button$")
-	public void click_on_loginbutton_button(String loginButton) throws Throwable {
-		driver.findElement(By.id(loginButton)).click();
-	}
+    }
 
-	@Then("^render home page$")
-	public void render_home_page() throws Throwable {
-		driver.manage().timeouts().implicitlyWait(1, TimeUnit.MINUTES);
-	}
-	
-	@Given("^User entered valid userName as \"([^\"]*)\" and password as \\$$")
-	public void user_entered_valid_userName_as_and_password_as_$(String arg1) throws Throwable {
-		System.out.println(arg1);
-	}
-	@After
-	public void tearDown(){
-		LOG.info("closing the browser");
-		driver.quit();
-	}
+	@Test
+	public void loginTest(){   
+driver.get("https://www.facebook.com");
+               String pageTitle = driver.getTitle();       //get the title of the webpage
+		System.out.println("The title of this page is ===> " +pageTitle);
+		Assert.assertEquals("Facebook", pageTitle); 
+        // Locate the username and password fields and the login button
+                driver.findElement(By.id("email")).sendKeys("anishaprabhu019.com");
+		driver.findElement(By.id("pass")).sendKeys("123456789");
+		driver.findElement(By.xpath("//*[@name='login']")).click();
+		System.out.println("Login");
+	        System.out.println("successfull");
+        
+    
 
-}
-	 
-	    
+        // Click on the login button
+        loginButton.click();
+    }
+    public void teardown(){
+        // Wait for a few seconds to see the result before closing the browser
+        driver.quit();
+        }
 
+        
