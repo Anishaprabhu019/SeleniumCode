@@ -16,48 +16,46 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 
 public class Login {
-    WebDriver driver;
-    
+	private Logger LOG=LoggerFactory.getLogger(this.getClass());
+	private WebDriver driver ;
+	
+	@Before
+	public void setUp(){
+		System.setProperty("webdriver.chrome.driver", "src/test/resources/lib/chromedriver.exe");
+		driver=new ChromeDriver();
+		driver.get("http://github.com/venkat-mandla/camel");
+	}
 
-    public void setup() {
-        // Set the path to the ChromeDriver executable
-        System.setProperty("webdriver.chrome.driver", "/opt/chromedriver");
+	@Given("^User entered valid userName or phoneNumber as \"([^\"]*)\" and password as \"([^\"]*)\"$")
+	public void user_entered_valid_userName_or_phoneNumber_as_and_password_as(String userName, String password) throws Throwable {
+		driver.get("https://www.facebook.com/");
+		driver.findElement(By.id("email")).sendKeys(userName);
+		driver.findElement(By.id("pass")).sendKeys(password);
+		
+		System.out.println("UserName: " + userName);
+	}
 
-        // Initialize the ChromeDriver
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--no-sandbox"); // Bypass OS security model, MUST BE THE VERY FIRST OPTION
-        options.addArguments("--headless");
-        options.setExperimentalOption("useAutomationExtension", false);
-        options.addArguments("start-maximized"); // open Browser in maximized mode
-        options.addArguments("disable-infobars"); // disabling infobars
-        options.addArguments("--disable-extensions"); // disabling extensions
-        options.addArguments("--disable-gpu"); // applicable to windows os only
-        options.addArguments("--disable-dev-shm-usage"); // overcome limited resource problems
-        driver = new ChromeDriver(options); //initialise the WebDriver
-    }
+	@When("^click on loginbutton \"([^\"]*)\" button$")
+	public void click_on_loginbutton_button(String loginButton) throws Throwable {
+		driver.findElement(By.id(loginButton)).click();
+	}
 
-    public void loginTest(){
-       
+	@Then("^render home page$")
+	public void render_home_page() throws Throwable {
+		driver.manage().timeouts().implicitlyWait(1, TimeUnit.MINUTES);
+	}
+	
+	@Given("^User entered valid userName as \"([^\"]*)\" and password as \\$$")
+	public void user_entered_valid_userName_as_and_password_as_$(String arg1) throws Throwable {
+		System.out.println(arg1);
+	}
+	@After
+	public void tearDown(){
+		LOG.info("closing the browser");
+		driver.quit();
+	}
+
+}
 	 
-	    driver.get("https://www.facebook.com/");
-	    Thread.sleep(2000);
-        // Navigate to Facebook login page
-            WebElement username = driver.findElement(By.id("email"));
-	    WebElement password = driver.findElement(By.id("pass"));
-	    WebElement Login = driver.findElement(By.id("u_0_v"));
-	    username.sendKeys("rajattiwari92@gmail.com");
-	    password.sendKeys("tiwari@2");
-	    Login.click();
 	    
-	    //driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-	    WebElement navigationclick = driver.findElement(By.id("logoutMenu"));
-	    WebElement logout = driver.findElement(By.xpath("//div[@id='u_d_1']/div/div/div/div/div/ul/li[12]/a/span/span"));
-	    navigationclick.click();
-	    if(logout.isEnabled() && logout.isDisplayed()) {
-	        logout.click();
-	    }
-	    else {
-	        System.out.println("Element not found");
-	    }
-    }
 }
