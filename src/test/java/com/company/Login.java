@@ -3,7 +3,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class login {\
+public class login {
     WebDriver driver;
     
 
@@ -30,7 +30,7 @@ public class login {\
         driver.get("https://www.facebook.com");
 
         // Locate the username and password fields and the login button
-        driver.findElement(By.id("email")).sendKeys("anishaprabhu019.com");
+                driver.findElement(By.id("email")).sendKeys("anishaprabhu019.com");
 		driver.findElement(By.id("pass")).sendKeys("123456789");
 		driver.findElement(By.xpath("//*[@name='login']")).click();
 		System.out.println("Login");
