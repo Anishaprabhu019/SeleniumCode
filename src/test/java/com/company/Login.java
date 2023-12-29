@@ -30,13 +30,12 @@ public class login {\
         driver.get("https://www.facebook.com");
 
         // Locate the username and password fields and the login button
-        WebElement emailField = driver.findElement(By.id("email"));
-        WebElement passwordField = driver.findElement(By.id("pass"));
-        WebElement loginButton = driver.findElement(By.name("login"));
-
-        // Enter your Facebook credentials
-        emailField.sendKeys("anishaprabhu019@gmail.com");
-        passwordField.sendKeys("123456789");
+        driver.findElement(By.id("email")).sendKeys("anishaprabhu019.com");
+		driver.findElement(By.id("pass")).sendKeys("123456789");
+		driver.findElement(By.xpath("//*[@name='login']")).click();
+		System.out.println("Login");
+        
+    
 
         // Click on the login button
         loginButton.click();
