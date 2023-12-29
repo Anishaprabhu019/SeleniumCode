@@ -24,7 +24,7 @@ public class login {
         System.setProperty("webdriver.chrome.driver", "/opt/chromedriver");
 
         // Initialize the ChromeDriver
-        Chromedriver options = new ChromeOptions();
+        ChromeOptions options = new ChromeOptions();
         options.addArguments("--no-sandbox"); // Bypass OS security model, MUST BE THE VERY FIRST OPTION
         options.addArguments("--headless");
         options.setExperimentalOption("useAutomationExtension", false);
@@ -53,7 +53,7 @@ public class login {
     
 
         // Click on the login button
-        loginButton.click();
+       // loginButton.click();
     }
     public void teardown(){
         // Wait for a few seconds to see the result before closing the browser
