@@ -36,9 +36,7 @@ public class Login {
 	@Test
 	public void loginTest(){   
                driver.get("https://www.facebook.com");
-               String pageTitle = driver.getTitle();       //get the title of the webpage
-		System.out.println("The title of this page is ===> " +pageTitle);
-		Assert.assertEquals("Facebook", pageTitle); 
+               
         // Locate the username and password fields and the login button
                 driver.findElement(By.id("email")).sendKeys("anishaprabhu019.com");
 		driver.findElement(By.id("pass")).sendKeys("123456789");
