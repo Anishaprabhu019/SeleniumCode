@@ -53,7 +53,7 @@ public class Login {
     
 
         // Click on the login button
-       // loginButton.click();
+        loginButton.click();
     }
     public void teardown(){
         // Wait for a few seconds to see the result before closing the browser
