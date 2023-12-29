@@ -22,20 +22,20 @@ public class Login {
 		System.setProperty("webdriver.chrome.driver","/opt/chromedriver");
 		ChromeOptions options = new ChromeOptions();
 		options.addArguments("--no-sandbox"); // Bypass OS security model, MUST BE THE VERY FIRST OPTION
-        options.addArguments("--headless");
-        options.setExperimentalOption("useAutomationExtension", false);
-        options.addArguments("start-maximized"); // open Browser in maximized mode
-        options.addArguments("disable-infobars"); // disabling infobars
-        options.addArguments("--disable-extensions"); // disabling extensions
-        options.addArguments("--disable-gpu"); // applicable to windows os only
-        options.addArguments("--disable-dev-shm-usage"); // overcome limited resource problems
-        driver = new ChromeDriver(options); //initialise the WebDriver
+                options.addArguments("--headless");
+                options.setExperimentalOption("useAutomationExtension", false);
+                options.addArguments("start-maximized"); // open Browser in maximized mode
+                options.addArguments("disable-infobars"); // disabling infobars
+                options.addArguments("--disable-extensions"); // disabling extensions
+                options.addArguments("--disable-gpu"); // applicable to windows os only
+                options.addArguments("--disable-dev-shm-usage"); // overcome limited resource problems
+                 driver = new ChromeDriver(options); //initialise the WebDriver
 
     }
 
 	@Test
 	public void loginTest(){   
-driver.get("https://www.facebook.com");
+               driver.get("https://www.facebook.com");
                String pageTitle = driver.getTitle();       //get the title of the webpage
 		System.out.println("The title of this page is ===> " +pageTitle);
 		Assert.assertEquals("Facebook", pageTitle); 
