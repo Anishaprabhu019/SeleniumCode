@@ -37,28 +37,27 @@ public class Login {
     }
 
     public void loginTest(){
-
+       
+	 
+	    driver.get("https://www.facebook.com/");
+	    Thread.sleep(2000);
         // Navigate to Facebook login page
-              driver.get("https://www.facebook.com");
-               String pageTitle = driver.getTitle();       //get the title of the webpage
-		System.out.println("The title of this page is ===> " +pageTitle);
-		Assert.assertEquals("Facebook", pageTitle); 
-        // Locate the username and password fields and the login button
-                driver.findElement(By.id("email")).sendKeys("anishaprabhu019.com");
-		driver.findElement(By.id("pass")).sendKeys("123456789");
-		driver.findElement(By.xpath("//*[@name='login']")).click();
-		System.out.println("Login");
-	        System.out.println("successfull");
-        
-    
-
-        // Click on the login button
-        loginButton.click();
+            WebElement username = driver.findElement(By.id("email"));
+	    WebElement password = driver.findElement(By.id("pass"));
+	    WebElement Login = driver.findElement(By.id("u_0_v"));
+	    username.sendKeys("rajattiwari92@gmail.com");
+	    password.sendKeys("tiwari@2");
+	    Login.click();
+	    Thread.sleep(3000);
+	    //driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+	    WebElement navigationclick = driver.findElement(By.id("logoutMenu"));
+	    WebElement logout = driver.findElement(By.xpath("//div[@id='u_d_1']/div/div/div/div/div/ul/li[12]/a/span/span"));
+	    navigationclick.click();
+	    if(logout.isEnabled() && logout.isDisplayed()) {
+	        logout.click();
+	    }
+	    else {
+	        System.out.println("Element not found");
+	    }
     }
-    public void teardown(){
-        // Wait for a few seconds to see the result before closing the browser
-        driver.quit();
-        }
-
-        
 }
